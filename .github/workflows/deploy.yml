@@ -7,7 +7,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: BCRE-Demos
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '22.x'
 
 permissions:
   contents: read
