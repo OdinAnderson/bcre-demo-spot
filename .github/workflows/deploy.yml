@@ -1,0 +1,75 @@
+name: Build & Deploy to Azure App Service
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: BCRE-Demos
+  NODE_VERSION: '20.x'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Puppeteer downloads Chrome during install.
+      # We skip that here and let the App Service startup script
+      # install system-level Chrome deps at boot time.
+      # The Puppeteer cache is included in the deploy artifact.
+
+      - name: Create deployment package
+        run: |
+          # Remove dev-only files from the artifact
+          rm -rf .git .github seed.js
+          # Zip everything including node_modules (App Service Oryx can rebuild,
+          # but shipping node_modules avoids build timeouts for Puppeteer's
+          # bundled Chrome binary)
+          zip -r -q deploy.zip . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "seed.js"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bcre-demo-spot-app
+          path: deploy.zip
+          retention-days: 3
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: bcre-demo-spot-app
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: deploy.zip

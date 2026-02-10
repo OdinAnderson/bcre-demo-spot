@@ -1,0 +1,31 @@
+{
+  "name": "bcre-demo-spot",
+  "version": "1.0.0",
+  "description": "Interactive demo & prototype showcase",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step required'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OdinAnderson/bcre-demo-spot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/OdinAnderson/bcre-demo-spot/issues"
+  },
+  "homepage": "https://github.com/OdinAnderson/bcre-demo-spot#readme",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "express": "^5.2.1",
+    "puppeteer": "^24.37.2"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mlh2a55gcyu84",
+    "url": "https://deep-r-odin.replit.app",
+    "title": "DeepR - AI Decision Frameworks",
+    "description": "AI LLM Council and DxO Decision Orchestrator - Multi-model AI deliberation platform",
+    "snapshot": "/snapshots/deep_r_odin_replit_app_1770755796239.png",
+    "addedAt": "2026-02-10T20:36:36.628Z"
+  },
+  {
+    "id": "mlh2ac7pl1t30",
+    "url": "http://lab.odinz.net/lab/mc/",
+    "title": "OpenClaw Control",
+    "description": "OpenClaw Control — A gateway dashboard for managing AI agents, chat channels, sessions, cron jobs, skills, nodes, and system configuration with real-time health monitoring.",
+    "snapshot": "/snapshots/lab_odinz_net_lab_mc__1770755805480.png",
+    "addedAt": "2026-02-10T20:36:45.781Z"
+  },
+  {
+    "id": "mlh2ai25e8xzb",
+    "url": "http://lab.odinz.net/lab/nuvi/",
+    "title": "Kitchen Dashboard",
+    "description": "Kitchen Dashboard — A smart home display showing weather forecasts, daily checklists, and household task tracking with a clean, glanceable interface.",
+    "snapshot": "/snapshots/lab_odinz_net_lab_nuvi__1770755813099.png",
+    "addedAt": "2026-02-10T20:36:53.357Z"
+  }
+]
